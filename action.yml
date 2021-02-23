@@ -1,0 +1,27 @@
+name: 'Google Drive upload'
+description: 'Upload a file to Google Drive using a service account'
+inputs:
+  credentials:
+    description: 'Google service account credentials'
+    required: true
+  parent_folder_id:
+    description: 'Google Drive folder ID to upload the file to'
+    required: true
+  target:
+    description: 'Local path to the file to upload'
+    required: true
+  owner:
+    description: 'Optional user account email (Require domain-wide authority delegation)'
+    required: false
+    default: null
+  name:
+    description: 'Optional name for the target file'
+    required: false
+    default: null
+  child_folder:
+    description: 'Optional sub-folder to upload the file to (Will be created if non-existent)'
+    required: false
+    default: null
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
