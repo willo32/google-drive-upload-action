@@ -1,0 +1,9 @@
+{
+  "name": "google-drive-upload-action",
+  "version": "0.0.1",
+  "description": "Github action to upload a file to Google Drive using a service account",
+  "main": "index.js",
+  "repository": "git@github.com:willo32/google-drive-upload-action.git",
+  "license": "UNLICENSED",
+  "private": true
+}
