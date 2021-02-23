@@ -6,6 +6,10 @@
   "repository": "git@github.com:willo32/google-drive-upload-action.git",
   "license": "UNLICENSED",
   "private": true,
+  "scripts": {
+    "lint": "eslint src",
+    "build": "ncc build src/index.js"
+  },
   "devDependencies": {
     "@types/node": "^12.20.4",
     "@vercel/ncc": "^0.27.0",
