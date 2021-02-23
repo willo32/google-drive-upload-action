@@ -5,5 +5,15 @@
   "main": "index.js",
   "repository": "git@github.com:willo32/google-drive-upload-action.git",
   "license": "UNLICENSED",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "@types/node": "^12.20.4",
+    "@vercel/ncc": "^0.27.0",
+    "eslint": "^7.20.0",
+    "eslint-config-willo-base": "^1.3.3"
+  },
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "googleapis": "^67.1.0"
+  }
 }
