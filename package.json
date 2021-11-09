@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Github action to upload a file to Google Drive using a service account",
   "main": "index.js",
+  "author": "Software devel <software_devel@willo.com>",
   "repository": "git@github.com:willo32/google-drive-upload-action.git",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "lint": "eslint src",
