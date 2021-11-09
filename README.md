@@ -2,27 +2,17 @@
 Github action to upload a file to Google Drive using a service account.
 
 ## Usage
-Since this action is private (not published to Github marketplace), you have to checkout this repository to use it in your workflow.
-
 #### Simple example:
 ```
 steps:
     - uses: actions/checkout@v2
 
-    - name: Clone private Google Drive upload action
-      uses: actions/checkout@v2
-      with:
-        repository: willo32/google-drive-upload-action
-        ref: <LATEST_RELEASE_TAG (i.e. v1.0.0)>
-        token: ${{ secrets.<YOUR_GITHUB_TOKEN> }}
-        path: .github/actions/google-drive-upload-action
-
     - name: Upload a file to Google Drive
-      uses: ./.github/actions/google-drive-upload-action
+      uses: willo32/google-drive-upload-action@v1
       with:
         target: <LOCAL_PATH_TO_YOUR_FILE>
         credentials: ${{ secrets.<YOUR_SERVICE_ACCOUNT_CREDENTIALS> }}
-        parent_folder_id: <YOUR_FOLDER_ID>
+        parent_folder_id: <YOUR_DRIVE_FOLDER_ID>
 ```
 
 ### Inputs
@@ -31,14 +21,16 @@ Local path to the file to upload, can be relative from github runner current dir
 
 #### `credentials` (Required):
 A service account public/private key pair encoded in base64.
+
 [Generate and download your credentials in JSON format](https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys)
+
 Run `base64 my_service_account_key.json > encoded.txt` and paste the encoded string into a github secret.
 
 #### `parent_folder_id` (Required):
-The id of the drive folder where you want to upload your file. It is the set of characters after the last `/` in your address bar (from your Internet browser). You must share the folder with the service account unless you specify a `owner`.
+The id of the drive folder where you want to upload your file. It is the string of characters after the last `/` when browsing to your folder URL. You must share the folder with the service account (using its email address) unless you specify a `owner`.
 
 #### `name` (Optional):
-The name of the file to be uploaded. Set to the target filename if not specified.
+The name of the file to be uploaded. Set to the `target` filename if not specified.
 
 #### `child_folder` (Optional):
 A sub-folder where to upload your file. It will be created if non-existent and must remain unique. Useful to organize your drive like so:
