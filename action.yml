@@ -23,5 +23,8 @@ inputs:
     required: false
     default: null
 runs:
-  using: 'node12'
+  using: 'node14'
   main: 'dist/index.js'
+branding:
+  icon: upload-cloud
+  color: purple
