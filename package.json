@@ -19,6 +19,6 @@
   },
   "dependencies": {
     "@actions/core": "^1.2.6",
-    "googleapis": "^67.1.0"
+    "googleapis": "^105.0.0"
   }
 }
