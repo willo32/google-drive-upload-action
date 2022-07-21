@@ -24,7 +24,7 @@ async function getUploadFolderId() {
 
     // Check if child folder already exists and is unique
     const { data: { files } } = await drive.files.list({
-        q: `name='${childFolder}' and '${parentFolderId}' in parents`,
+        q: `name='${childFolder}' and '${parentFolderId}' in parents and trashed=false`,
         fields: 'files(id)',
         includeItemsFromAllDrives: true,
         supportsAllDrives: true,
