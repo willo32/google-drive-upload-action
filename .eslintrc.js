@@ -1,5 +1,6 @@
-module.exports = {
-    extends: [
-        'eslint-config-willo-base',
-    ],
+export const parserOptions = {
+  ecmaVersion: "latest",
+};
+export const env = {
+  es6: true,
 };
