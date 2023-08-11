@@ -1,7 +1,7 @@
-const fs = require("fs");
+import fs from "fs";
 
-const actions = require("@actions/core");
-const { google } = require("googleapis");
+import actions from "@actions/core";
+import { google } from "googleapis";
 
 const credentials = actions.getInput("credentials", { required: true });
 const parentFolderId = actions.getInput("parent_folder_id", { required: true });
@@ -13,13 +13,12 @@ const credentialsJSON = JSON.parse(
   Buffer.from(credentials, "base64").toString()
 );
 const scopes = ["https://www.googleapis.com/auth/drive.file"];
-const auth = new google.auth.JWT(
-  credentialsJSON.client_email,
-  null,
-  credentialsJSON.private_key,
+const auth = new google.auth.JWT({
+  email: credentialsJSON.client_email,
+  key: credentialsJSON.private_key,
   scopes,
-  owner
-);
+  subject: owner,
+});
 const drive = google.drive({ version: "v3", auth });
 
 async function getUploadFolderId() {
@@ -37,22 +36,22 @@ async function getUploadFolderId() {
     supportsAllDrives: true,
   });
 
-  if (files.length > 1) {
+  if (files && files.length > 1) {
     throw new Error("More than one entry match the child folder name");
   }
-  if (files.length === 1) {
+
+  if (files && files.length === 1) {
     return files[0].id;
   }
 
-  const childFolderMetadata = {
-    name: childFolder,
-    mimeType: "application/vnd.google-apps.folder",
-    parents: [parentFolderId],
-  };
   const {
     data: { id: childFolderId },
   } = await drive.files.create({
-    resource: childFolderMetadata,
+    requestBody: {
+      name: childFolder,
+      mimeType: "application/vnd.google-apps.folder",
+      parents: [parentFolderId],
+    },
     fields: "id",
     supportsAllDrives: true,
   });
@@ -66,23 +65,20 @@ async function main() {
   for (let path of target) {
     const filename = path.split("/").pop();
 
-    const fileMetadata = {
-      name: filename,
-      parents: [uploadFolderId],
-    };
-    const fileData = {
-      body: fs.createReadStream(path),
+    const option = {
+      requestBody: {
+        name: filename,
+        parents: uploadFolderId ? [uploadFolderId] : null,
+      },
+      media: {
+        body: fs.createReadStream(path),
+      },
+      uploadType: "multipart",
+      fields: "id",
+      supportsAllDrives: true,
     };
 
-    await drive.files
-      .create({
-        resource: fileMetadata,
-        media: fileData,
-        uploadType: "multipart",
-        fields: "id",
-        supportsAllDrives: true,
-      })
-      .finally();
+    await drive.files.create(option).finally();
   }
 }
 
