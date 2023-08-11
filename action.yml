@@ -1,4 +1,4 @@
-name: 'Upload Files to Google Drive'
+name: 'Google Drive File Uploader'
 description: 'Upload files to Google Drive using a service account'
 inputs:
   credentials:
