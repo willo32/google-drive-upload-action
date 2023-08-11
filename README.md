@@ -1,6 +1,8 @@
-# google-drive-upload-action
+# Google Drive File Uploader
 
 Github action to upload a file to Google Drive using a service account.
+
+(Forked from https://github.com/willo32/google-drive-upload-action)
 
 ## Usage
 
@@ -8,7 +10,7 @@ Github action to upload a file to Google Drive using a service account.
 
 ```
 steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Upload a files to Google Drive
       uses: wodndb/google-drive-upload-action@v1
