@@ -1,5 +1,5 @@
-name: 'Google Drive upload'
-description: 'Upload a file to Google Drive using a service account'
+name: 'Upload Files to Google Drive'
+description: 'Upload files to Google Drive using a service account'
 inputs:
   credentials:
     description: 'Google service account credentials'
@@ -8,7 +8,7 @@ inputs:
     description: 'Google Drive folder ID to upload the file to'
     required: true
   target:
-    description: 'Local path to the file to upload'
+    description: 'Local path to the files to upload (multiple lines)'
     required: true
   owner:
     description: 'Optional user account email (Require domain-wide authority delegation)'
@@ -23,7 +23,7 @@ inputs:
     required: false
     default: null
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'
 branding:
   icon: upload-cloud
