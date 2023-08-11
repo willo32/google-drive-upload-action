@@ -1,10 +1,13 @@
 {
   "name": "google-drive-upload-action",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Github action to upload a file to Google Drive using a service account",
   "main": "index.js",
-  "author": "Software devel <software_devel@willo.com>",
-  "repository": "git@github.com:willo32/google-drive-upload-action.git",
+  "authors": [
+    "Software devel <software_devel@willo.com>",
+    "Jaeu Jeong <wodndb@gmail.com>"
+  ],
+  "repository": "git@github.com:wodndb/google-drive-upload-action.git",
   "license": "MIT",
   "private": true,
   "scripts": {
