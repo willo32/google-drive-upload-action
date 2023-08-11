@@ -62,7 +62,7 @@ async function getUploadFolderId() {
 async function main() {
   const uploadFolderId = await getUploadFolderId();
 
-  for (let path of target) {
+  for (const path of target) {
     const filename = path.split("/").pop();
 
     const option = {
