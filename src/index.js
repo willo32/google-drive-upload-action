@@ -8,7 +8,6 @@ const parentFolderId = actions.getInput("parent_folder_id", { required: true });
 const target = actions.getMultilineInput("target", { required: true });
 const owner = actions.getInput("owner", { required: false });
 const childFolder = actions.getInput("child_folder", { required: false });
-let filename = actions.getInput("name", { required: false });
 
 const credentialsJSON = JSON.parse(
   Buffer.from(credentials, "base64").toString()
@@ -64,10 +63,8 @@ async function getUploadFolderId() {
 async function main() {
   const uploadFolderId = await getUploadFolderId();
 
-  target.forEach((path) => {
-    if (!filename) {
-      filename = path.split("/").pop();
-    }
+  for (let path of target) {
+    const filename = path.split("/").pop();
 
     const fileMetadata = {
       name: filename,
@@ -77,14 +74,14 @@ async function main() {
       body: fs.createReadStream(path),
     };
 
-    return drive.files.create({
+    drive.files.create({
       resource: fileMetadata,
       media: fileData,
       uploadType: "multipart",
       fields: "id",
       supportsAllDrives: true,
     });
-  });
+  }
 }
 
 main().catch((error) => actions.setFailed(error));
