@@ -74,13 +74,15 @@ async function main() {
       body: fs.createReadStream(path),
     };
 
-    drive.files.create({
-      resource: fileMetadata,
-      media: fileData,
-      uploadType: "multipart",
-      fields: "id",
-      supportsAllDrives: true,
-    });
+    await drive.files
+      .create({
+        resource: fileMetadata,
+        media: fileData,
+        uploadType: "multipart",
+        fields: "id",
+        supportsAllDrives: true,
+      })
+      .finally();
   }
 }
 
