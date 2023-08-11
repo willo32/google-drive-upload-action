@@ -15,7 +15,10 @@ steps:
     - name: Upload a files to Google Drive
       uses: wodndb/google-drive-upload-action@v1
       with:
-        targets: [<LOCAL_PATH_TO_YOUR_FILES>]
+        target: |-
+          <LOCAL_PATH_TO_YOUR_FILES_1>
+          <LOCAL_PATH_TO_YOUR_FILES_2>
+          ...
         credentials: ${{ secrets.<YOUR_SERVICE_ACCOUNT_CREDENTIALS> }}
         parent_folder_id: <YOUR_DRIVE_FOLDER_ID>
 ```
