@@ -1,5 +1,4 @@
 import fs from "fs";
-
 import actions from "@actions/core";
 import { google } from "googleapis";
 
@@ -78,7 +77,7 @@ async function main() {
       supportsAllDrives: true,
     };
 
-    await drive.files.create(option).finally();
+    await drive.files.create(option);
   }
 }
 
