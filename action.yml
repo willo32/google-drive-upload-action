@@ -1,30 +1,26 @@
-name: 'Google Drive File Uploader'
-description: 'Upload files to Google Drive using a service account'
+name: "Google Drive File Uploader"
+description: "Upload files to Google Drive using a service account"
 inputs:
   credentials:
-    description: 'Google service account credentials'
+    description: "Google service account credentials"
     required: true
   parent_folder_id:
-    description: 'Google Drive folder ID to upload the file to'
+    description: "Google Drive folder ID to upload the file to"
     required: true
   target:
-    description: 'Local path to the files to upload (multiple lines)'
+    description: "Local path to the files to upload (multiple lines)"
     required: true
   owner:
-    description: 'Optional user account email (Require domain-wide authority delegation)'
-    required: false
-    default: null
-  name:
-    description: 'Optional name for the target file'
+    description: "Optional user account email (Require domain-wide authority delegation)"
     required: false
     default: null
   child_folder:
-    description: 'Optional sub-folder to upload the file to (Will be created if non-existent)'
+    description: "Optional sub-folder to upload the file to (Will be created if non-existent)"
     required: false
     default: null
 runs:
-  using: 'node16'
-  main: 'dist/index.js'
+  using: "node16"
+  main: "dist/index.js"
 branding:
   icon: upload-cloud
   color: purple
