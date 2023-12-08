@@ -22,6 +22,10 @@ inputs:
     description: 'Optional sub-folder to upload the file to (Will be created if non-existent)'
     required: false
     default: null
+  overwrite:
+    description: 'Whether to overwrite an existing file with the same name.'
+    required: false
+    default: false
 runs:
   using: 'node12'
   main: 'dist/index.js'
