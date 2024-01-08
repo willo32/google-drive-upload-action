@@ -110,6 +110,9 @@ async function main() {
         return drive.files.update({
             fileId,
             media: fileData,
+            uploadType: 'multipart',
+            fields: 'id',
+            supportsAllDrives: true,
         });
     }
 }
